@@ -17,7 +17,6 @@ class ListaDupla:
         self.head: NodeDouble = None
         self.tail: NodeDouble = None
 
-
     def __repr__(self):
         return f"[{self.head}]"
 
@@ -94,7 +93,7 @@ class ListaDupla:
         self.head = None
         self.tail = None
 
-    def insert(self,position,data):
+    def insert(self, position, data):
         current = self.__find(position)
         if current == self.tail:
             self.append(data)
@@ -107,7 +106,7 @@ class ListaDupla:
             new_node = NodeDouble(data)
             new_node.next_node = current
             new_node.before_node = current.before_node
-            new_node.before_node.next_node= new_node
+            new_node.before_node.next_node = new_node
             new_node.next_node.before_node = new_node
 
     def count(self, element):
@@ -120,11 +119,11 @@ class ListaDupla:
             current = current.next_node
         return count
 
-    def extend(self, list):
-        for i in list:
+    def extend(self, list_to_extend):
+        for i in list_to_extend:
             self.append(i)
 
-    def index(self,data):
+    def index(self, data):
         assert self.head, "Empty List"
         current = self.head
         index = 0
@@ -135,7 +134,7 @@ class ListaDupla:
             current = current.next_node
         raise ValueError(f"{data} is not in the list")
 
-    def remove(self,data):
+    def remove(self, data):
         assert self.head, "Empty List"
         current = self.head
         while current:
@@ -147,14 +146,10 @@ class ListaDupla:
     def reverse(self):
         current = self.head
         while current:
-            next = current.next_node
+            next_node = current.next_node
             current.next_node = current.before_node
-            current.before_node = next
-            current = next
+            current.before_node = next_node
+            current = next_node
         head = self.head
         self.head = self.tail
         self.tail = head
-
-
-
-
